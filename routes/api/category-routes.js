@@ -5,7 +5,7 @@ const { Category, Product } = require('../../models');
 
 function getCategories()
 {
-  Category.findAll().then((categories) => {
+  Category.findAll({include: Product}).then((categories) => {
     return categories;
   });
 }
@@ -20,10 +20,21 @@ router.get('/', (req, res) => {
   // be sure to include its associated Products
 });
 
+function getCategory(findID)
+{
+  Category.findByPk(findID, {include: Product}).then((category) => {
+    return category;
+  });
+}
+
 router.get('/:id', (req, res) => {
+
+  const category = getCategory(req.params.id);
   // find one category by its `id` value
   // be sure to include its associated Products
 });
+
+//function 
 
 router.post('/', (req, res) => {
   // create a new category
