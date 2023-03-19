@@ -3,21 +3,25 @@ const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint //url is localhost:3001/api/categories
 
-function getCategories()
-{
-  Category.findAll({include: Product}).then((categories) => {
-    return categories;
-  });
-}
+// function getCategories()
+// {
+//   Category.findAll({include: Product}).then((categories) => {
+//     return categories;
+//   });
+// }
 
 router.get('/', (req, res) => {
 
-  const categories = getCategories();
-  //res.send("howdy");
-  //res.send(stringify(categories));
-  res.json(categories);
-  // find all categories
-  // be sure to include its associated Products
+  Category.findAll({include: Product}).then((categories) => {
+    res.json(categories);
+  });
+
+  // const categories = getCategories();
+  // //res.send("howdy");
+  // //res.send(stringify(categories));
+  // res.json(categories);
+  // // find all categories
+  // // be sure to include its associated Products
 });
 
 function getCategory(findID)
