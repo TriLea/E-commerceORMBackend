@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
 
   Category.findAll({include: Product}).then((categories) => {
     res.json(categories);
+    //res.send("howdy");
   });
 
   // const categories = getCategories();
